@@ -2,7 +2,7 @@ export const playCopy = {
   play_subnav_title: "Playground",
   play_subnav_config: "TS Config",
   play_config_language_blurb: "Qué idioma se debe utilizar en el editor",
-  play_subnav_handbook: "Ayuda"
+  play_subnav_handbook: "Ayuda",
   play_subnav_examples: "Ejemplos",
   play_subnav_examples_close: "Cerrar",
   play_subnav_whatsnew: "Qué hay de nuevo",
@@ -24,7 +24,7 @@ export const playCopy = {
   play_sidebar_options_disable_ata: "Deshabilitar ATA",
   play_sidebar_options_disable_ata_copy:
     "Desactivar la adquisición automática de tipos para importaciones y requiere",
-  play_sidebar_options_disable_save: "Deshabilitar Save-On-Type (Guardar al escribir)",
+  play_sidebar_options_disable_save: "Deshabilitar Save-On-Type",
   play_sidebar_options_disable_save_copy:
     "Inhabilita el cambio de URL cuando escribes",
   play_sidebar_plugins: "Complementos",

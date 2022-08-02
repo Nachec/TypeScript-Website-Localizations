@@ -1,5 +1,5 @@
 export const comCopy = {
-  com_layout_title: "Recursosde la comunidad TypeScript",
+  com_layout_title: "Recursos de la comunidad TypeScript",
   com_layout_description:
     "Conéctate con otros TypeScripters en línea y fuera de línea.",
   com_headline: "Ponte en contacto con nosotros",
