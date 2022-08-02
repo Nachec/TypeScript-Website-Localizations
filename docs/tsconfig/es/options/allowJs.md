@@ -1,16 +1,16 @@
 ---
-display: "Permitir JS"
-oneline: "Permite incluir archivos .JS en las importaciones de archivos TypeScript."
+display: "Permite JS"
+oneline: "Permite que los archivos JavaScript formen parte de tu programa. Utiliza la opción `checkJS` para obtener errores de estos archivos."
 ---
 
-Permite importar archivos JavaScript dentro de su proyecto, en lugar de sólo los archivos `.ts` y `.tsx`. Por ejemplo, este archivo JavaScript:
+Permite que se importen archivos *JavaScript* dentro de tu proyecto, en lugar de solo archivos `.ts` y `.tsx`. Por ejemplo, este archivo *JS*:
 
 ```js twoslash
 // @filename: card.js
 export const defaultCardDeck = "Heart";
 ```
 
-Al ser importado en un archivo de TypeScript se producirá un error:
+Cuando se importa a un archivo de *TypeScript* generará un error:
 
 ```ts twoslash
 // @errors: 2307
@@ -23,7 +23,7 @@ import { defaultCardDeck } from "./card";
 console.log(defaultCardDeck);
 ```
 
-Se importa sin problemas cuando se habilita la opción `allowJs`
+Importa bien con `allowJs` habilitado:
 
 ```ts twoslash
 // @filename: card.js
@@ -36,4 +36,4 @@ import { defaultCardDeck } from "./card";
 console.log(defaultCardDeck);
 ```
 
-Esta opción puede ser usada como una forma de agregar progresivamente archivos TypeScript en un proyecto JavaScript al permitir los archivos con extensión `.ts` y `.tsx` convivir con los archivos JavaScript existentes.
+Esta marca se puede utilizar como una forma de agregar incrementalmente archivos *TypeScript* en proyectos *JS* permitiendo que los archivos `.ts` y `.tsx` vivan junto con los archivos *JavaScript* existentes.

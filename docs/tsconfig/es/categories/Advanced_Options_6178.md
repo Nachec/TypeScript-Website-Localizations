@@ -2,4 +2,4 @@
 display: "Avanzado"
 ---
 
-Opciones que ayudan a la depuración
+Banderas que ayudan con la depuración

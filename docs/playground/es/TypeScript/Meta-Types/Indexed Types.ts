@@ -1,6 +1,6 @@
-// Hay veces que te encuentras duplicando tipos. Un ejemplo
-// común es el de los recursos anidados en una respuesta API
-// autogenerada.
+// Hay momentos en los que te encuentras duplicando tipos.
+// Un ejemplo común son los recursos anidados en una generación automática.
+// Respuesta de API.
 
 interface ArtworkSearchResponse {
   artists: {
@@ -14,8 +14,7 @@ interface ArtworkSearchResponse {
 }
 
 // Si esta interfaz fuera hecha a mano, es bastante fácil
-// imaginar que se saca el tipo de artworks en una interfaz
-// como:
+// imagina sacar las obras de arte en una interfaz como:
 
 interface Artwork {
   name: string;
@@ -24,16 +23,15 @@ interface Artwork {
 }
 
 // Sin embargo, en este caso no controlamos la API, y si
-// creamos la interfaz a mano, es posible que la parte de
-// ArtworkSearchResponse y Artwork se desincronicen cuando
-// la respuesta cambie.
+// Creamos a mano la interfaz, entonces es posible que
+// artworks sea parte de ArtworkSearchResponse y
+// Artwork se pueden desincronizar cuando cambia la respuesta.
 
-// La solución para esto son los tipos indexados, que
-// replican la manera en que JavaScript permite el acceso a
-// las propiedades a través de cadenas.
+// La solución para esto son los tipos indexados, que replican cómo
+// JavaScript permite acceder a las propiedades a través de cadenas.
 
 type InferredArtwork = ArtworkSearchResponse["artists"][0]["artworks"][0];
 
-// El InferredArtwork se genera mirando las propiedades del
-// tipo y dando un nuevo nombre al subconjunto que has
-// indexado.
+// El InferredArtwork se genera mirando a través de las
+// propiedades del tipo y dando un nuevo nombre al subconjunto
+// que has indexado.

@@ -1,15 +1,15 @@
 ---
 display: "Permitir código inalcanzable"
-oneline: "Muestra un error cuando el código nunca será ejecutado"
+oneline: "Deshabilita el informe de errores para el código inalcanzable."
 ---
 
 Cuando:
 
-- `undefined` (por defecto) proporciona sugerencias como advertencias a los editores
-- `true` código inalcanzable es ignorado
-- `false` genera errores de compilación cuando se detecta código inalcanzable
+- `undefined` (predeterminado) proporciona sugerencias como advertencias a los editores
+- `true` ignora el código inalcanzable
+- `false` genera errores del compilador sobre el código inalcanzable
 
-Estas advertencias son sólo sobre el código que es evidentemente inalcanzable debido al uso de la sintaxis de JavaScript, por ejemplo:
+Estas advertencias solo son sobre el código que es demostrablemente inalcanzable debido al uso de la sintaxis de *JavaScript*, por ejemplo:
 
 ```ts
 function fn(n: number) {
@@ -22,7 +22,7 @@ function fn(n: number) {
 }
 ```
 
-Con la opción `"allowUnreachableCode": false`:
+Con `"allowUnreachableCode": false`:
 
 ```ts twoslash
 // @errors: 7027
@@ -37,4 +37,4 @@ function fn(n: number) {
 }
 ```
 
-Esto no afecta a los errores sobre la base del código que _parece_ ser inalcanzable debido al análisis de tipos.
+Esto no afecta a los errores basados ​​en el código que *parece* no ser accesible debido al análisis de tipo.

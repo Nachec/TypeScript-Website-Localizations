@@ -1,20 +1,19 @@
-// Los tipos condicionales proporcionan una forma de hacer
-// lógica simple en el sistema de tipos de TypeScript. Esta
-// es definitivamente una característica avanzada, y es
-// bastante factible que no necesites usar esto en tu código
-// del día a día.
+// Los tipos condicionales proporcionan una forma de hacer lógica simple en el
+// Sistema de tipos TypeScript. Esta definitivamente es una característica
+// avanzada, y es bastante factible que no necesites
+// usar esto en tu código normal del día a día.
 
-// Un tipo condicional se parece a:
+// Un tipo condicional se ve así:
 //
 //   A extends B ? C : D
 //
-// Donde la condición es si un tipo extiende una expresión
-// y, en caso afirmativo, qué tipo debe devolverse.
+// Donde la condición es si una una expresión de
+// tipo extends, y de ser así, qué tipo se debe devolver.
 
-// Veamos algunos ejemplos, para ser breves vamos a usar
-// letras simples para los genéricos. Esto es opcional, pero
-// al restringirnos a 60 caracteres es difícil que quepa en
-// la pantalla.
+// Repasemos algunos ejemplos, por brevedad vamos
+// a utilizar letras simples para los genéricos. Esto es opcional
+// pero restringirnos a 60 caracteres lo convierte en
+// difícil de encajar en la pantalla.
 
 type Cat = { meows: true };
 type Dog = { barks: true };
@@ -22,27 +21,26 @@ type Cheetah = { meows: true; fast: true };
 type Wolf = { barks: true; howls: true };
 
 // Podemos crear un tipo condicional que permita extraer
-// tipos que sólo se ajusten a un animal que ladra.
+// tipos que solo se ajustan a algo que ladra (barks).
 
 type ExtractDogish<A> = A extends { barks: true } ? A : never;
 
-// Entonces podemos crear tipos soportados por ExtractDogish:
+// Luego podemos crear tipos que ExtractDogish envuelve:
 
-// Un gato no ladra, por lo que retorna `never`
+// Un gato no ladra, por lo que devolverá never
 type NeverCat = ExtractDogish<Cat>;
-// Un lobo puede ladrar, por lo que retorna la forma del
-// objeto `Wolf`
+// Un lobo ladrará, por lo que devuelve la forma de lobo.
 type Wolfish = ExtractDogish<Wolf>;
 
-// Esto resulta útil cuando se quiere trabajar con un unión
-// de muchos tipos y reducir el número de opciones
-// potenciales en una unión:
+// Esto resulta útil cuando deseas trabajar con una
+// unión de muchos tipos y reducir el número de potenciales
+// opciones en una unión:
 
 type Animals = Cat | Dog | Cheetah | Wolf;
 
-// Cuando aplicas ExtractDogish a una unión de tipos, es
-// igual a ejecutar los condicionales en cada uno de los
-// miembros del tipo:
+// Cuando aplicas ExtractDogish a un tipo unión, es lo
+// mismo que ejecutar el condicional contra cada miembro de
+// el tipo:
 
 type Dogish = ExtractDogish<Animals>;
 
@@ -51,64 +49,61 @@ type Dogish = ExtractDogish<Animals>;
 //
 // = never | Dog | never | Wolf
 //
-// = Dog | Wolf (Veasé example:unknown-and-never)
+// = Dog | Wolf (see example:unknown-and-never)
 
-// Se denomina tipo condicional distributivo porque el tipo
-// se distribuye sobre cada miembro de la unión.
+// Esto se llama tipo condicional distributivo porque
+// el tipo se distribuye entre cada miembro de la unión.
 
-// Tipos Condicionales Diferidos
+// Tipos condicionales diferidos
 
-// Los tipos condicionales pueden utilizarse para reforzar
-// sus APIs, que pueden devolver diferentes tipos en función
-// de las entradas.
+// Los tipos condicionales se pueden utilizar para ajustar tus APIs que
+// pueden devolver diferentes tipos dependiendo de las entradas.
 
-// Por ejemplo, esta función que puede devolver una cadena o
-// un número dependiendo del booleano pasado.
+// Por ejemplo, esta función que podría devolver un
+// string o number dependiendo del booleano pasado.
 
 declare function getID<T extends boolean>(fancy: T): T extends true ? string : number;
 
-// Entonces, dependiendo de cuánto sepa el sistema de tipos
-// sobre el booleano, obtendrá diferentes tipos de retorno:
+// Entonces, dependiendo de cuánto sepa el sistema de tipos sobre
+// el booleano, obtendrás diferente devolución de tipos:
 
 let stringReturnValue = getID(true);
 let numberReturnValue = getID(false);
 let stringOrNumber = getID(Math.random() < 0.5);
 
-// En este caso, TypeScript puede saber el valor de retorno
-// al instante. Sin embargo, puede usar tipos condicionales
-// en funciones donde el tipo no se conoce todavía. Esto se
-// denomina tipo condicional diferido.
+// En este caso, el TypeScript anterior puede conocer el valor de retorno
+// instantáneamente. Sin embargo, puedes usar tipos condicionales en funciones
+// donde el tipo aún no se conoce. Esto se llama tipo
+// condicional diferido.
 
-// Igual que nuestro "Dogish" anterior, pero como función
+// Igual que nuestro Dogish anterior, pero como una función
 declare function isCatish<T>(x: T): T extends { meows: true } ? T : undefined;
 
-// Hay una herramienta extra útil dentro de los tipos
-// condicionales, que es capaz de decirle específicamente a
-// TypeScript que debe inferir el tipo al diferir. Esa es la
-// palabra clave "infer".
+// Hay una herramienta extra útil dentro de los tipos condicionales, que
+// es poder decirle específicamente a TypeScript que debería
+// inferir el tipo al diferir. Esa es la palabra clave 'infer'.
 
-// "infer" se usa típicamente para crear meta-tipos que
-// inspeccionan los tipos existentes en tu código, piensa en
-// ello como crear una nueva variable dentro del tipo.
+// infer se usa típicamente para crear metatipos que inspeccionan
+// los tipos existentes en tu código, considéralo como una creación
+// de una nueva variable dentro del tipo.
 
 type GetReturnValue<T> = T extends (...args: any[]) => infer R ? R : T;
 
-// Básicamente:
+// Aproximadamente:
 //
-//  - Este es un tipo genérico condicional llamado
-//    GetReturnValue el cual acepta un tipo como su primer
-//    parámetro.
+//  - este es un tipo genérico condicional llamado GetReturnValue
+//    que toma un tipo en su primer parámetro
 //
-//  - El condicional revisa si el tipo es una función, y si
-//    es así crea un nuevo tipo llamado R basado en el valor
-//    retornado por esa función.
+//  - el condicional comprueba si el tipo es una función, y
+//    si es así, crea un nuevo tipo llamado R basado en el valor
+//    devuelto para esa función
 //
-//  - Si la revisión pasa, el valor del tipo es el valor de
-//    retorno inferido, sino es el tipo original.
+//  - Si la verificación pasa, el valor del tipo es valor devuelto
+//    inferido, de lo contrario es el tipo original
 //
 
 type getIDReturn = GetReturnValue<typeof getID>;
 
-// Esto falla en la comprobación de ser una función, y sólo
-// devolvería el tipo pasado a ella.
+// Esto falla en la verificación por ser una función, y
+// simplemente devuelva el tipo que se le pasó.
 type getCat = GetReturnValue<Cat>;

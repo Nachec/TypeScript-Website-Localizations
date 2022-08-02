@@ -1,22 +1,20 @@
-//// {  "title": "TypeScript con Deno",  "order": 3}
+//// { "order": 3 }
 
-// Deno es un entorno en tiempo de ejecución aún
-// incompleto para JavaScript y TypeScript basado en
-// v8 con un enfoque marcado en la seguridad.
+// Deno es un JavaScript y TypeScript en proceso
+// del entorno de ejecución basado en v8 con un enfoque en la seguridad.
 
 // https://deno.land
 
-// Deno cuenta con un sistema de permisos con base en el aislamiento,
-// lo cual reduce el acceso que tiene JavaScript al sistema de
-// archivos o a la red y utiliza importaciones basadas en http, las
-// cuales son descargadas y almacenadas localmente.
+// Deno tiene un sistema de permisos basado en sandbox que reduce el
+// acceso a JavaScript que tiene al sistema de archivos o a la red y utiliza
+// importaciones basadas en http que se descargan y almacenan en caché localmente.
 
-// Aquí hay un ejemplo del uso de deno para crear scripts:
+// A continuación, se muestra un ejemplo del uso de deno para la creación de scripts:
 
 import compose from "https://deno.land/x/denofun/lib/compose.ts";
 
 function greet(name: string) {
-  return `¡Hola, ${name}!`;
+  return `Hello, ${name}!`;
 }
 
 function makeLoud(x: string) {
@@ -25,10 +23,10 @@ function makeLoud(x: string) {
 
 const greetLoudly = compose(makeLoud, greet);
 
-// Dice "¡HOLA, MUNDO!."
-greetLoudly("mundo");
+// Ecos "HELLO, WORLD!."
+greetLoudly("world");
 
 import concat from "https://deno.land/x/denofun/lib/concat.ts";
 
-// Devuelve "holamundo"
-concat("hola", "mundo");
+// Devuelve "helloworld"
+concat("hello", "world");

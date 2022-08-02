@@ -1,10 +1,9 @@
-// Los tipos mapeados son una forma de crear nuevos tipos
-// basados en otro tipo. Efectivamente un tipo
-// transformacional.
+// Los tipos mapeados son una forma de crear nuevos tipos basados
+// en otro tipo. Efectivamente un tipo transformacional.
 
-// Los casos más comunes para usar un tipo mapeado es tratar
-// con subconjuntos parciales de un tipo existente. Por
-// ejemplo, una API puede devolver un objeto Artist:
+// Los casos comunes para el uso de un tipo mapeado son los
+// subconjuntos parciales de un tipo existente. Por ejemplo
+// una API puede devolver un Artist:
 
 interface Artist {
   id: number;
@@ -12,23 +11,23 @@ interface Artist {
   bio: string;
 }
 
-// Sin embargo, si enviara una actualización a la API que
-// sólo cambiara un subconjunto del objeto Artist, normalmente
-// tendría que crear un tipo adicional:
+// Sin embargo, si tuviera que enviar una actualización a la API que
+// solo cambia un subconjunto del Artist, entonces típicamente
+// deberías tendrías que crear un tipo adicional:
 
 interface ArtistForEdit {
   id: number;
-  name?: string;
+  nombre?: string;
   bio?: string;
 }
 
-// Es muy probable que esto se desincronice con la interface
-// Artist de arriba. Los tipos mapeados permiten crear un
-// cambio en un tipo existente.
+// Es muy probable que esto no esté sincronizado con
+// el Artista de arriba. Los tipos mapeados te permiten crear un cambio
+// en un tipo existente.
 
 type MyPartialType<Type> = {
-  // Para cada propiedad existente dentro del tipo Type
-  // conviértalo en su versión opcional ?:
+  // Para cada propiedad existente dentro del tipo de Type
+  // lo convierte en una versión  ?:
   [Property in keyof Type]?: Type[Property];
 };
 
@@ -36,23 +35,23 @@ type MyPartialType<Type> = {
 // nuestra interfaz de edición:
 type MappedArtistForEdit = MyPartialType<Artist>;
 
-// Esto es casi perfecto, pero permite que la propiedad id
-// sea nula, lo que nunca debería suceder. Así que, hagamos
-// una rápida mejora usando un tipo de intersección (veasé:
+// Esto es casi perfecto, pero hace que el id sea null
+// lo que nunca debería suceder. Entonces, hagamos una rápida
+// mejora mediante el uso de una intersección de tipo (ve:
 // example:union-and-intersection-types )
 
 type MyPartialTypeForEdit<Type> = {
   [Property in keyof Type]?: Type[Property];
 } & { id: number };
 
-// Esta toma el resultado parcial del tipo mapeado, y lo
-// fusiona con un objeto que tiene la propiedad id: number.
-// Con esto se fuerza a id a estar en el tipo.
+// Esto toma el resultado parcial del tipo mapeado y
+// lo fusiona con un objeto que tiene id: number establecido.
+// Forzando efectivamente a el id a estar en el tipo.
 
 type CorrectMappedArtistForEdit = MyPartialTypeForEdit<Artist>;
 
-// Este es un ejemplo bastante simple de cómo funcionan los
-// tipos mapeados, pero cubre la mayoría de los aspectos
-// básicos. Si desea profundizar más, consulte el manual:
+// Este es un ejemplo bastante simple de cómo trabajando los tipos
+// mapeados, pero cubre la mayoría de los conceptos básicos. Si quisieras
+// profundizar más, consulta el manual:
 //
 // https://www.typescriptlang.org/docs/handbook/advanced-types.html#mapped-types

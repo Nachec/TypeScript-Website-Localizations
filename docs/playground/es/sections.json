@@ -3,7 +3,7 @@
     {
       "name": "JavaScript",
       "id": "JavaScript",
-      "subtitle": "Descubre TypeScript mejora tu día a día con JavaScript con una sintaxis adicional mínima."
+      "subtitle": "Ve cómo TypeScript mejora el trabajo diario con JavaScript con una sintaxis adicional mínima."
     },
     {
       "name": "TypeScript",
@@ -13,42 +13,78 @@
     {
       "name": "3.7",
       "id": "3.7",
-      "subtitle": "Lee las <a href='https://devblogs.microsoft.com/typescript/announcing-typescript-3-7/'> notas de lanzamiento</a>."
+      "subtitle": "Consulta las <a href='https://devblogs.microsoft.com/typescript/announcing-typescript-3-7/'>Notas de la versión</a>."
     },
     {
       "name": "3.8",
       "id": "3.8",
-      "subtitle": "Lee las <a href='https://devblogs.microsoft.com/typescript/announcing-typescript-3-8/'>notas de lanzamiento</a>."
+      "subtitle": "Consulta las <a href='https://devblogs.microsoft.com/typescript/announcing-typescript-3-8/'>Notas de la versión</a>."
+    },
+    {
+      "name": "4.0",
+      "id": "4.0",
+      "subtitle": "Consulta las <a href='https://devblogs.microsoft.com/typescript/announcing-typescript-4-0/'>Notas de la versión</a>."
+    },
+    {
+      "name": "4.1",
+      "id": "4.1",
+      "subtitle": "Consulta las <a href='https://devblogs.microsoft.com/typescript/announcing-typescript-4-1/'>Notas de la versión</a>."
+    },
+    {
+      "name": "4.2",
+      "id": "4.2",
+      "subtitle": "Consulta las <a href='https://devblogs.microsoft.com/typescript/announcing-typescript-4-2-beta/'>Notas de la versión</a>."
+    },
+    {
+      "name": "4.3",
+      "id": "4.3",
+      "subtitle": "Consulta las <a href='https://devblogs.microsoft.com/typescript/announcing-typescript-4-3/'>Notas de la versión</a>."
+    },
+    {
+      "name": "4.4",
+      "id": "4.4",
+      "subtitle": "Ve las <a href='https://devblogs.microsoft.com/typescript/announcing-typescript-4-4/'>Notas de la versión</a>."
+    },
+    {
+      "name": "4.7",
+      "id": "4.7",
+      "subtitle": "Ve las <a href='https://devblogs.microsoft.com/typescript/announcing-typescript-4-7/'>Notas de la versión</a>."
     },
     {
       "name": "Playground V3",
       "id": "Playground",
-      "subtitle": "Descubre lo que ha cambiado en este sitio web."
+      "subtitle": "Conoce los cambios en este sitio web."
     }
   ],
   "sortedSubSections": [
     // JS
-    "JavaScript Essentials",
-    "Functions with JavaScript",
-    "Working With Classes",
-    "Modern JavaScript",
-    "External APIs",
-    "Helping with JavaScript",
+    "Esencial de JavaScript",
+    "Funciones con JavaScript",
+    "Trabajar con clases",
+    "JavaScript moderno",
+    "APIs externas",
+    "Ayuda con JavaScript",
     // TS
-    "Primitives",
-    "Type Primitives",
-    "Meta-Types",
-    "Language",
-    "Language Extensions",
-    // Examples
-    "Syntax and Messaging",
-    "Types and Code Flow",
-    "Fixits",
-    // Playground
+    "Primitivos",
+    "Tipo primitivos",
+    "Metatipos",
+    "Lenguaje",
+    "Extensiones del lenguaje",
+    // Ejemplos
+    "Sintaxis y mensajería",
+    "Tipos y flujo de código",
+    "Arreglarlo",
+    // `Playground`
     "Config",
-    "Tooling",
+    "Herramientas",
     // 3.8
-    "Breaking Changes",
-    "JSDoc Improvements"
+    "Cambios importantes",
+    "Mejoras de JSDoc",
+    // 4.0
+    "Nuevas funciones JS",
+    "Nuevas funciones TS",
+    "Nuevas comprobaciones",
+    // 4.1
+    "Plantillas literales"
   ]
 }

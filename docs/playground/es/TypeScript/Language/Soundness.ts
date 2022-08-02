@@ -1,42 +1,44 @@
-//// {  "compiler": {    "strictFunctionTypes": false  }}
+//// { "compiler": { "strictFunctionTypes": false } }
 
-// Sin antecedentes en la teoría de tipos, es poco probable que esté
-// familiarizado con la idea de que un sistema de tipos sea "sólido".
+// Sin experiencia en teoría de tipos, es poco probable
+// familiarizarse con la idea de que un sistema de tipos es "sólido".
 
-// La Solidez es la idea de que el compilador puede dar garantías sobre el tipo
-// de valor que tiene un valor en tiempo de ejecución, y no sólo durante la
-// compilación. Esto es normal para la mayoría de los lenguajes de programación
-// que se construyen con tipos desde el primer día.
+// La solidez es la idea de que el compilador puede ofrecer garantías
+// sobre el tipo que tiene un valor en el entorno de ejecución, y no solo
+// durante la compilación. Esto es normal para la mayoría de los lenguajes
+// de programación que se construyen con tipos desde el primer día.
 
-// Sin embargo, la construcción de un sistema de tipos que modela un lenguaje el
-// cual ha existido por algunas décadas se torna en la toma de decisiones para
-// compensar tres cualidades: Simplicidad, Usabilidad y Solidez.
+// Construir un sistema de tipos que modela un lenguaje que ha
+// existido durante algunas décadas, sin embargo, se trata de hacer
+// decisiones con compensaciones en tres cualidades: Sencillez,
+// Usabilidad y solidez.
 
-// Siendo el objetivo de TypeScript de ser capaz de soportar todo el código
-// JavaScript, el lenguaje tiende a la simplicidad y la usabilidad cuando se
-// presenta con formas de añadir tipos a JavaScript.
+// Con el objetivo de TypeScript de poder admitir todo el código
+// JavaScript, el lenguaje tiende a la simplicidad y la usabilidad
+// cuando se le presentan formas de agregar tipos a JavaScript.
 
-// Veamos algunos casos en los cuales TypeScript probablemente no es sólido,
-// para entender cómo se verían esas compensaciones de otra manera.
+// Veamos algunos casos en los que TypeScript probadamente
+// no suena, para entender cómo se verían esas compensaciones
+// como de otra manera.
 
-// Aserciones de Tipo
+// Aserciones de tipo
 
 const usersAge = ("23" as any) as number;
 
-// TypeScript le permitirá usar aserciones de tipo para anular la inferencia de
-// algo que está mal. El uso de aserciones de tipo es una manera de decirle a
-// TypeScript que usted sabe lo que hace, y TypeScript tratará de dejarle
-// continuar con ello.
+// TypeScript te permitirá usar aserciones de tipo para redefinir
+// la inferencia de algo que está bastante mal. Utilizar
+// aserciones de tipo es una forma de decirle a TypeScript que sabes
+// bien lo que haces, y TypeScript intentará dejarte seguir adelante.
 
-// Los lenguajes que son sólidos ocasionalmente usarían comprobaciones de tiempo
-// de ejecución para asegurarse de que los datos coinciden con lo que dicen sus
-// tipos - pero TypeScript tiene como objetivo no tener un impacto en tiempo de
-// ejecución de los tipos en su código transpilado.
+// Los lenguajes que son sólidos ocasionalmente usarían comprobaciones en el
+// entorno de ejecución para asegurarse de que los datos coincidan con lo que dicen sus tipos ⏤ pero
+// TypeScript tiene como objetivo no tener ningún impacto en el entorno de
+// ejecución con reconocimiento de tipos en tu código transpilado.
 
-// Parámetro de función Bi-variante
+// Función Parámetro Bivarianza
 
-// Los parámetros de una función soportan la redefinición del parámetro para que
-// sea un subtipo de la declaración original.
+// Los parámetros para una función admiten la redefinición del parámetro
+// para ser un subtipo de la declaración original.
 
 interface InputEvent {
   timestamp: number;
@@ -49,54 +51,54 @@ interface KeyboardInputEvent extends InputEvent {
   keyCode: number;
 }
 
-function listenForEvent(eventType: "keyboard" | "mouse", handler: (event: InputEvent) => void) {}
+function listenForEvent(eventType: "keyboard" | "mouse", handler: (event: InputEvent) => void) { }
 
-// Puede volver a declarar el tipo de parámetro para que sea un subtipo de la
-// declaración. En lo anterior, el parámetro `handler` esperaba un tipo
-// InputEvent pero en los siguientes ejemplos - TypeScript acepta un tipo que
-// tiene propiedades adicionales.
+// Puedes volver a declarar el tipo de parámetro como un subtipo de
+// la declaracion. Arriba, el controlador esperaba un tipo InputEvent
+// pero en los siguientes ejemplos de uso ⏤ TypeScript acepta
+// un tipo que tiene propiedades adicionales.
 
-listenForEvent("keyboard", (event: KeyboardInputEvent) => {});
-listenForEvent("mouse", (event: MouseInputEvent) => {});
+listenForEvent("keyboard", (event: KeyboardInputEvent) => { });
+listenForEvent("mouse", (event: MouseInputEvent) => { });
 
-// Esto puede extenderse hasta el tipo común más pequeño:
+// Esto se puede remontar hasta el tipo común más pequeño:
 
-listenForEvent("mouse", (event: {}) => {});
+listenForEvent("mouse", (event: {}) => { });
 
 // Pero no más allá:
 
-listenForEvent("mouse", (event: string) => {});
+listenForEvent("mouse", (event: string) => { });
 
-// Esto cubre el patrón del mundo real para escuchar eventos en JavaScript, a
-// expensas de tener un código más sólido.
+// Esto cubre el patrón del mundo real del escucha de eventos.
+// en JavaScript, a costa de ser sólido.
 
-// TypeScript puede arrojar un error cuando esto sucede a través de la opción
-// `strictFunctionTypes`. O, podrías trabajar alrededor de este caso particular
-// con sobrecargas de funciones,
-// Véase: example:typing-functions
+// TypeScript puede generar un error cuando esto sucede a través de
+// `strictFunctionTypes`. O podrías solucionar este caso
+// particular con sobrecarga de funciones,
+// ve: example:typing-functions
 
-// Caso especial para Void
+// Carcasa especial vacía
 
 // Descarte de parámetros
 
-// Para conocer acerca de los casos especiales con parámetros de función
-// Véase example:structural-typing
+// Para aprender sobre casos especiales con parámetros de función
+// ve el example:structural-typing
 
-// Parámetros Rest
+// Parámetros `rest`
 
-// Los parámetros rest se asumen todos como opcionales, esto significa que
-// TypeScript no tiene manera de hacer cumplir el número de parámetros
-// disponibles para una llamada de retorno.
+// Se supone que todos los parámetros rest son opcionales, esto significa
+// que TypeScript no tendrá una forma de hacer cumplir el número de
+// parámetros disponibles para una devolución de llamada.
 
-function getRandomNumbers(count: number, callback: (...args: number[]) => void) {}
+function getRandomNumbers(count: number, callback: (...args: number[]) => void) { }
 
 getRandomNumbers(2, (first, second) => console.log([first, second]));
-getRandomNumbers(400, first => console.log(first));
+getRandomNumbers(400, (first) => console.log(first));
 
-// Las funciones declaradas `void` pueden coincidir con una función con un valor de retorno
+// Las funciones void pueden coincidir con una función con un valor de retorno
 
-// Una función que retorna una función declarada `void` puede aceptar una
-// función que acepta cualquier otro tipo.
+// Una función que devuelve una función void, puede aceptar una
+// función que tome cualquier otro tipo.
 
 const getPI = () => 3.14;
 
@@ -106,8 +108,8 @@ function runFunction(func: () => void) {
 
 runFunction(getPI);
 
-// Para más información sobre los lugares donde la solidez del sistema de tipos
-// se ve comprometida, véase:
+// Para obtener más información sobre los lugares donde la solidez del
+// sistema de tipos está comprometido, consulta:
 
 // https://github.com/Microsoft/TypeScript/wiki/FAQ#type-system-behavior
 // https://github.com/Microsoft/TypeScript/issues/9825

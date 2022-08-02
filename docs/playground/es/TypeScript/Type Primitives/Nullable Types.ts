@@ -1,21 +1,19 @@
-//// {  "title": "Tipos Anulables",  "order": 3,  "compiler": {    "strictNullChecks": false  }}
+//// { "order": 3, "compiler": { "strictNullChecks": false } }
 
 // JavaScript tiene dos formas de declarar valores que no
-// existen, y TypeScript agrega sintaxis adicional lo que
-// permite aun más formas de declarar algo como opcional o
-// anulable.
+// existen, y TypeScript agrega una sintaxis adicional que permite incluso
+// más formas de declarar algo como opcional o anulable.
 
-// Primero, la diferencia entre ambas primitivas de
-// JavaScript: undefined y null.
+// Primero, la diferencia entre los dos primitivos
+// JavaScript: undefined y null
 
-// La primitiva indefinida `undefined` es cuando algo no
-// puede ser encontrado o modificado.
+// Undefined es cuando algo no se puede encontrar o configurar
 
 const emptyObj = {};
 const anUndefinedProperty: undefined = emptyObj["anything"];
 
-// La primitiva nula `null` está destinada a ser usada
-// cuando hay una falta consciente de un valor.
+// Null está destinado a usarse cuando hay una falta consciente
+// de un valor.
 
 const searchResults = {
   video: { name: "LEGO Movie" },
@@ -23,74 +21,65 @@ const searchResults = {
   audio: { name: "LEGO Movie Soundtrack" },
 };
 
-// ¿Por qué no usar undefined? Principalmente, porque ahora
-// puedes verificar que la propiedad text se haya incluido
-// correctamente. Si la propiedad text se devuelve como
-// undefined, el resultado es el mismo que si no estuviera
-// allí.
+// ¿Por qué no usar undefined? Principalmente, porque ahora puedes verificar
+// que ese texto se incluyó correctamente. Si el texto se devolvió como
+// undefined, el resultado es el mismo que si no
+// estuviera ahí.
 
-// Esto puede parecer un poco superficial, pero cuando se
-// hace la conversión a una cadena JSON, si la propiedad
-// text era undefined, esta no podria ser incluida en la
-// cadena de texto equivalente.
+// Esto puede parecer un poco superficial, pero cuando se convierte en
+// una cadena JSON, si el texto fuera undefined, no sería
+// incluido en la cadena equivalente.
 
-// Tipos Anulables Estrictos
+// Tipos null estrictos
 
-// Antes de TypeScript 2.0, las primitivas undefined y null
-// eran ignoradas en el sistema de tipado. Esto permitió que
-// TypeScript proporcionará un entorno de codificación más
-// cercano a JavaScript sin tipado.
+// Antes de TypeScript 2.0 undefined y null eran efectivamente
+// ignorados en el sistema de tipos. Esto permitió que TypeScript proporcionara una
+// entorno de codificación más cercano a JavaScript no tipado.
 
-// La versión 2.0 agregó una opción de compilador llamada
-// "strictNullChecks" y esta opción requería que los
-// usuarios tratasen undefined y null como tipos que deben
-// ser manejados por medio de análisis de flujo de código
-// ( Ver más en example:code-flow )
+// La versión 2.0 agregó un indicador al compilador llamado "strictNullChecks"
+// y este indicador requería que las personas trataran a undefined y a null
+// como tipos que se deben manejar mediante análisis de flujo de código
+// (ve más en el example:code-flow)
 
-// Para ver un ejemplo de la diferencia en activar la opción
-// de verificación estricta de tipos nulos en TypeScript,
-// desplaza el cursor sobre "PotentialString" a
-// continuación:
+// Para ver un ejemplo de la diferencia al activar la comprobación
+// strict null en TypeScript, coloca el cursor sobre "Potential String" a continuación:
 
 type PotentialString = string | undefined | null;
 
-// La variable PotentialString descarta el valor undefined y
-// null. Si vas al panel de configuración, y activas el modo
-// estricto, al regresar al código, verás que al pasar por
-// PotentialString ahora se muestra la unión completa de
-// tipos.
+// PotentialString descarta los undefined y null. Si
+// subes a la configuración y activas el modo strict y regresas
+// verás que al pasar el cursor sobre PotentialString ahora se muestra
+// la unión completa.
 
 declare function getID(): PotentialString;
 
 const userID = getID();
 console.log("User Logged in: ", userID.toUpperCase());
 
-// Lo anterior fallará solamente en modo estricto ^
+// Solo en modo strict lo anterior fallará ^
 
-// Existen maneras de decirle a TypeScript que sabes lo que
-// haces, como por ejemplo una aserción de tipo o mediante
-// un operador de aserción no nulo (!)
+// Hay formas de decirle a TypeScript que sabes más, como
+// una aserción de tipo o mediante un operador de aserción no nula (!)
 
 const definitelyString1 = getID() as string;
 const definitelyString2 = getID()!;
 
-// O puedes verificar de manera segura por la existencia del
-// valor utilizando un condicional if:
+// O puedes verificar de manera segura la existencia a través de un if:
 
 if (userID) {
   console.log(userID);
 }
 
-// Propiedades Opcionales
+// Propiedades opcionales
 
-// Void
+// `void`
 
-// Void es el tipo que retorna una función que no devuelve
-// un valor.
+// Void es el tipo de retorno de una función que no
+// devuelve un valor.
 
-const voidFunction = () => {};
+const voidFunction = () => { };
 const resultOfVoidFunction = voidFunction();
 
-// Esto es usualmente un accidente, y TypeScript mantiene el
-// tipo vacío para permitirle obtener errores del compilador,
-// aunque en tiempo de ejecución sería undefined.
+// Esto suele ser un accidente y TypeScript mantiene el tipo
+// void alrededor para permitirte obtener errores del compilador ⏤ aunque en
+// el entorno de ejecución sería undefined.

@@ -1,35 +1,34 @@
-//// {  "title": "Hola Mundo",  "order": 0,  "compiler": {    "target": 1  }}
+//// { "order": 0, "compiler": { "target": 1 } }
 
-// Bienvenido a TypeScript playground. Este sitio se parece
-// mucho a ejecutar un proyecto de TypeScript dentro de un
-// navegador.
+// Bienvenido al playground de TypeScript. Este sitio es mucho
+// como ejecutar un proyecto de TypeScript dentro de un navegador web.
 
-// El playground hace más fácil que puedas experimentar de forma
-// segura con ideas en TypeScript al hacer trivial compartir estos
-// proyectos. La URL de esta página es lo único que requiere
-// otra persona para cargar el proyecto.
+// El patio de recreo te facilita experimentar de forma segura
+// con ideas en TypeScript al hacer que sea trivial compartir
+// estos proyectos. La URL de esta página es todo lo que
+// necesitas para que alguien más cargue el proyecto.
 
-const hola = "Hola";
+const hello = "Hello";
 
-// Puedes ver a la derecha el resultado del compilador
-// de TypeScript: esto es JavaScript puro, que puede ejecutarse
-// en navegadores, servidores o en cualquier lugar realmente.
+// Puedes ver a la derecha el resultado del TypeScript
+// compiler: este es JavaScript puro que se puede ejecutar en
+// navegadores, servidores o en cualquier lugar realmente.
 
-const mundo = "Mundo";
+const world = "World";
 
-// Puedes ver como hace pequeños cambios al código, al convertir
-// "const" a "var". Esta es una de las muchas cosas que TypeScript
-// hace para hacer posible su ejecución donde quiera que se
-// ejecute JavaScript.
+// Puedes ver cómo realiza pequeños cambios en el código, por
+// convertir una "const" en una "var". Esta es una de las muchas
+// cosas que TypeScript hace para que sea posible ejecutarlo
+// en cualquier lugar donde se ejecute JavaScript.
 
-console.log(hola + " " + mundo);
+console.log(hello + " " + world);
 
-// Ahora que tienes una idea de como funciona el playground,
-// veamos como TypeScript hace que sea más divertido trabajar
-// con JavaScript. Durante esta sección intentaremos
-// mantenernos tan cercanos como sea posible a JavaScript puro
-// para mostrarte que puedes reutilizar conocimiento existente.
+// Ahora que tienes una idea de cómo funciona el playground,
+// veamos cómo TypeScript hace que trabajar con
+// JavaScript sea más divertido. A lo largo de esta sección intentaremos
+// mantenerse lo más cerca posible de JavaScript puro para
+// mostrarte cómo puedes reutilizar el conocimiento existente.
 //
-// Haz clic debajo para continuar:
+// Haz clic a continuación para continuar:
 //
 // example:objects-and-arrays

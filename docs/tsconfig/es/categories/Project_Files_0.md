@@ -2,4 +2,4 @@
 display: "Inclusión de archivos"
 ---
 
-Estos ajustes te ayudan a asegurarte que TypeScript elija los archivos correctos.
+Esta configuración te ayuda a asegurarte de que *TypeScript* seleccione los archivos correctos.

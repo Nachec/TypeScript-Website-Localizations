@@ -1,5 +1,5 @@
 ---
-display: "Opciones del Proyecto"
+display: "Opciones de proyecto"
 ---
 
-Estos ajustes se utilizan para definir las expectativas de tiempo de ejecución de su proyecto, cómo y dónde quiere que se emita el código JavaScript y el nivel de integración que desea con el código JavaScript existente.
+Estas configuraciones se utilizan para definir las expectativas del entorno de ejecución de tu proyecto, cómo y dónde deseas que se emita *JavaScript* y el nivel de integración que deseas con el código *JavaScript* existente.

@@ -1,26 +1,24 @@
-// Any es la via de escape de TypeScript. Puedes usar any
-// para declarar que una sección de tu código es dinámica y
-// parecida a JavaScript, o como solución alternativa para
-// las limitaciones del sistema de tipado.
+// Any es la cláusula de escape de TypeScript. Puedes usar any para
+// declarar que una sección de tu código sea dinámica y
+// similar a JavaScript, o para solucionar las limitaciones
+// en el sistema de tipos.
 
-// Un buen caso de uso de any es el análisis del formato JSON:
+// Un buen caso para any es el análisis JSON:
 
 const myObject = JSON.parse("{}");
 
-// Any le hace saber a TypeScript que confíe en su código
-// como seguro porque conoce más sobre este, incluso si
-// eso no es estrictamente cierto. Por ejemplo, este código
-// no funcionará:
+// Any declara a TypeScript que confía en tu código como
+// seguro porque sabes más sobre él. Incluso si eso
+// no es estrictamente cierto. Por ejemplo, este código fallaría:
 
 myObject.x.y.z;
 
-// Haciendo uso de any le permite tener la habilidad de escribir
-// código similar al JavaScript original sacrificando el sistema
-// de tipado.
+// El uso de any te da la capacidad de escribir código más cercano a
+// JavaScript original con la compensación de la seguridad de tipos.
 
-// Se puede decir que any es un `tipo comodín`, el cual permite
-// ser reemplazado con cualquier otro tipo (exceptuando never)
-// con el fin de asignar tipos diferentes entre si.
+// any es muy parecido a un 'tipo comodín' que puedes reemplazar
+// con cualquier tipo (excepto never) para hacer que un tipo sea asignable
+// al otro.
 
 declare function debug(value: any): void;
 
@@ -28,26 +26,25 @@ debug("a string");
 debug(23);
 debug({ color: "blue" });
 
-// Cada llamado de depuración esta permitido ya que puedes
-// reemplazar any con el tipo del argumento a coincidir.
+// Cada llamada a debug está permitida porque podrías reemplazar el
+// a any con el tipo de argumento que debe coincidir.
 
-// TypeScript tendrá en cuenta la posición de los anys en
-// diferentes formas, por ejemplo con estas tuplas para el
-// argumento de la función.
+// TypeScript tendrá en cuenta la posición de los
+// anys en diferentes formas, por ejemplo con estas tuplas
+// para el argumento de la función.
 
 declare function swap(x: [number, string]): [string, number];
 
 declare const pair: [any, any];
 swap(pair);
 
-// El llamado a la función swap es permitido porque el
-// argumento puede ser emparejado reemplazando el primer `any`
-// en el par con el tipo number, y el segundo `any` con el
-// tipo string.
+// La llamada a swap está permitida porque el argumento se puede
+// emparejar reemplazando el primero any en el par con el número
+// y el segundo `any` con una cadena.
 
-// Si las tuplas son algo nuevo para ti, veasé: example:tuples
+// Si las tuplas son nuevas para ti, consulta: example:tuples
 
-// Unknown es un tipo hermano de `any`, siendo `any` para
-// decir "Sé lo que es mejor", mientras que `unknown` es una forma
-// de decir "No estoy seguro de lo que es mejor, así que tienes
-// que decirle a TS el tipo" example:unknown-and-never
+// Unknown es un tipo hermano para any, si any trata de decir
+// "Sé lo que es mejor", entonces unknown es una forma de decir "No
+// estoy seguro de qué es lo mejor, por lo que debes indicarle a TS el tipo"
+// example:unknown-and-never

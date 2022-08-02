@@ -1,40 +1,37 @@
-//// {  "title": "TypeScript con Node",  "order": 3,  "isJavaScript": true}
+//// { "order": 3, "isJavaScript": true }
 
-// Node.js en un entorno de ejecución muy popular para JavaScript,
-// construido sobre v8, el motor de JavaScript que utiliza Chrome. 
-// Puedes usarlo para construir servidores, interfaces de usuario y
-// cualquier otra cosa que se le parezca.
+// Node.js es un entorno de ejecución de JavaScript muy popular construido en v8,
+// el motor JavaScript que impulsa a Chrome. Lo puedes usar
+// para construir servidores, clientes front-end y cualquier cosa intermedia.
 
 // https://nodejs.org/
 
-// Node.js tiene con un conjunto de bibliotecas principales que
-// extienden el entorno de ejecución de JavaScript. Van desde el 
-// manejo de rutas del sistema operativo:
+// Node.js viene con un conjunto de bibliotecas centrales que amplían el
+// entorno de ejecución de JavaScript. Van desde el manejo de rutas:
 
 import { join } from "path";
 const myPath = join("~", "downloads", "todo_list.json");
 
-// hasta la manipulación de archivos:
+// Para la manipulación de archivos:
 
 import { readFileSync } from "fs";
 const todoListText = readFileSync(myPath, "utf8");
 
-// Puedes añadir incrementalmente tipos a tus proyectos de JavaScript
-// usando tipos al estilo JSDoc. Haremos uno de los elementos de
-// nuestra lista de tareas pendientes (en inglés TODOs) basados en 
-// la estructura JSON:
+// Puedes agregar tipos de forma incremental a tus proyectos JavaScript
+// utilizando el tipado estilo JSDoc. Haremos uno para nuestro elemento de la lista TODO
+// basado en la estructura JSON:
 
 /**
- * @typedef {Object} TODO un elemento de TODO
- * @property {string} title El nombre a mostrar del elemento TODO
+ * @typedef {Object} TODO un elemento TODO
+ * @property {string} title El nombre para mostrar del elemento TODO
  * @property {string} body La descripción del elemento TODO
- * @property {boolean} done Si el elemento TODO ha sido o no completado
+ * @property {boolean} done Si el elemento TODO está completo
  */
 
-// Ahora asígnalo al valor de retorno de JSON.parse.
-// Para más información, dirígete a: example:jsdoc-support
+// Ahora asigna eso al valor de retorno de JSON.parse
+// para obtener más información sobre esto, consulta: example:jsdoc-support
 
-/** @type {TODO[]} una lista de TODOs */
+/** @type {TODO []} una lista de TODOs */
 const todoList = JSON.parse(todoListText);
 
 // Y manejo de procesos:
@@ -42,15 +39,14 @@ import { spawnSync } from "child_process";
 todoList
   .filter(todo => !todo.done)
   .forEach(todo => {
-    // Usa el cliente ghi para crear una incidencia por cada
-    // elemento de la lista que no se ha completado aún.
+    // Utiliza el cliente de ghi para crear un problema para cada tarea
+    // elemento de la lista que aún no se ha completado.
 
-    // Observa que se activa correctamente el autocompletamiento
-    // y la documentación en JS cuando señalas debajo a 'todo.title'.
+    // Ten en cuenta que obtienes el autocompletado correcto y
+    // docs en JS cuando resaltas 'todo.title' a continuación.
     spawnSync(`ghi open --message "${todo.title}\n${todo.body}"`);
   });
 
-// TypeScript tiene definiciones de tipos actualizadas para todos
-// los módulos incorporados por defecto, mediante DefinitelyTyped;
-// lo que significa que puedes escribir programas de node con una
-// sólida cobertura de tipos.
+// TypeScript tiene definiciones de tipo actualizadas para todos los
+// módulos integrados a través de DefinitelyTyped - lo cual significa que
+// puedes escribir programas node con una fuerte cobertura de tipos.

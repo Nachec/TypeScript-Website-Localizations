@@ -1,67 +1,67 @@
-// Podría ser más fácil comenzar el debate sobre la ampliación y
-// la reducción con un ejemplo:
+// Podría ser más fácil comenzar la explicación de
+// ampliación y reducción con un ejemplo:
 
 const welcomeString = "Hello There";
 let replyString = "Hey";
 
-// Aparte de las diferencias de texto en las cadenas, welcomeString
-// es una const (lo que significa que el valor nunca cambiará)
-// y replyString es un let (lo que significa que puede cambiar).
+// Aparte de las diferencias de texto de las cadenas, welcomeString
+// es una constante (lo cual significa que el valor nunca cambiará)
+// y replyString es un let (lo cual significa que puede cambiar).
 
-// Si pasas el cursor por encima de ambas variables, obtienes
-// información de tipo muy diferente de TypeScript:
+// Si colocas el cursor sobre ambas variables, obtendrás resultados muy diferentes
+// la información de tipo desde TypeScript:
 //
 //   const welcomeString: "Hello There"
 //
 //   let replyString: string
 
-// TypeScript ha inferido el tipo de welcomeString como la cadena
-// literal "Hello There", mientras que replyString es una cadena
-// general.
+// TypeScript ha inferido el tipo de welcomeString para ser
+// la cadena literal "Hola", mientras que replyString
+// es una string general.
 
-// Esto se debe a que let necesita un tipo mas amplio, podrias
-// establecer replyString como cualquier otra cadena, lo que
-// significa que tiene un conjunto más amplio de posibilidades.
+// Esto se debe a que un let debe tener un tipo más amplio,
+// podrías establecer replyString para que sea cualquier otra cadena ⏤ lo cual significa
+// que tiene un conjunto más amplio de posibilidades.
 
 replyString = "Hi :wave:";
 
-// Si replyString tiene como tipo la cadena literal "Hey" -
-// entonces nunca podrías cambiar el valor porque sólo podría
+// Si replyString tenía el tipo de string literal "Hey" ⏤ entonces
+// nunca podrías cambiar el valor porque solo podrías
 // cambiar a "Hey" de nuevo.
 
-// La ampliación y reducción de tipos se basa en aumentar o
-// reducir las posibilidades que un tipo puede representar.
+// Los tipos Widening y Narrowing son sobre ampliar y reducir
+// las posibilidades que podría representar un tipo.
 
 // Un ejemplo de reducción de tipo es trabajar con uniones, el
-// ejemplo del análisis de flujo de código se basa casi
-// enteramente en la reducción: example:code-flow
+// ejemplo de análisis de flujo de código se basa casi en su totalidad en
+// narrowing: example:code-flow
 
-// La reducción de tipo es lo que impulsa el modo estricto de
-// TypeScript a través de las verificaciones de nulidad. Con el
-// modo estricto desactivado, los marcadores de nulidad como
-// indefinido y nulo son ignorados en una unión.
+// El tipo narrowing es lo que impulsa el modo strict de TypeScript
+// a través de las comprobaciones de nulabilidad. Con el modo strict desactivado,
+// los marcadores de nulabilidad como undefined y null se ignoran
+// en una unión.
 
 declare const quantumString: string | undefined;
-// Esto fallará sólo en modo estricto
+// Esto fallará solo en modo strict
 quantumString.length;
 
-// En el modo estricto la responsabilidad es del autor del código
-// para asegurar que el tipo se ha reducido al tipo no nulo.
-// Normalmente esto es tan simple como una comprobación de tipo if:
+// En modo strict, la responsabilidad recae en el autor del código para garantizar
+// que el tipo se ha reducido al tipo no null.
+// Por lo general, esto es tan simple como una verificación if:
 
 if (quantumString) {
   quantumString.length;
 }
 
-// En el modo estricto, el tipo quantumString tiene dos representaciones.
-// Dentro del condicional if, el tipo fue reducido a solo una cadena.
+// En modo strict, el tipo quantumString tiene dos representaciones.
+// Dentro del if, el tipo se redujo a solo string.
 
-// Puede ver más ejemplos de reducción en:
+// Puedes ver más ejemplos de reducción en:
 //
 // example:union-and-intersection-types
 // example:discriminate-types
 
-// Y aún más recursos en la web:
+// E incluso más recursos en la web:
 //
 // https://mariusschulz.com/blog/literal-type-widening-in-typescript
 // https://sandersn.github.io/manual/Widening-and-Narrowing-in-Typescript.html

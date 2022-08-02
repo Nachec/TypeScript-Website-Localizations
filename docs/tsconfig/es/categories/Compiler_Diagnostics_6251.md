@@ -1,0 +1,3 @@
+---
+display: "Diagnóstico del compilador"
+---

@@ -1,15 +1,14 @@
-//// {  "title": "Unknown y Never"}
+// `Unknown`
 
-// Unknown
+// Unknown es uno de esos tipos que, una vez que haces clic,
+// le puedes encontrar muchos usos. Actúa como un hermano
+// del tipo any. Donde any permite la ambigüedad ⏤ unknown
+// requiere detalles específicos.
 
-// Unknown es uno de esos tipos que una vez que lo usas, puedes encontrar
-// bastantes usos para él. Actúa como un hermano para el tipo `any`.
-// Donde `any` permite la ambigüedad, `unknown` requiere de detalles.
-
-// Un buen ejemplo sería envolver un analizador JSON.
-// Los datos JSON pueden venir en muchas formas diferentes
-// y el creador de la función de análisis JSON no sabrá la
-// forma de los datos - la persona que llama a esa función debería.
+// Un buen ejemplo sería empaquetar un analizador JSON. JSON
+// los datos pueden venir en muchas formas diferentes y el creador
+// de la función de análisis json no conocerá la forma de
+// data ⏤ la persona que llama a esa función lo debería hacer.
 
 const jsonParser = (jsonString: string) => JSON.parse(jsonString);
 
@@ -18,9 +17,10 @@ const myAccount = jsonParser(`{ "name": "Dorothea" }`);
 myAccount.name;
 myAccount.email;
 
-// Si inspecciona jsonParser, puedes ver que retorna el tipo `any`,
-// por lo que myAccount también. Es posible arreglar esto con los
-// genéricos, pero también es posible arreglar esto con los desconocidos.
+// Si pasas el mouse sobre jsonParser, puedes ver que
+// devuelve el tipo any, luego myAccount. Es posible
+// que arregle esto con genéricos ⏤ pero también es posible arreglar
+// esto con unknown.
 
 const jsonParserUnknown = (jsonString: string): unknown => JSON.parse(jsonString);
 
@@ -28,69 +28,64 @@ const myOtherAccount = jsonParserUnknown(`{ "name": "Samuel" }`);
 
 myOtherAccount.name;
 
-// El objeto myOtherAccount no puede ser usado hasta que el tipo
-// haya sido declarado en TypeScript. Esto puede ser utilizado
-// para asegurarse que los consumidores de la API piensen en
-// su tipo por adelantado:
+// El objeto myOtherAccount no se puede utilizar hasta que el tipo se
+// haya declarado en TypeScript. Esto se puede utilizar para asegurar
+// que los consumidores de la API piensan al escribir desde el principio:
 
 type User = { name: string };
 const myUserAccount = jsonParserUnknown(`{ "name": "Samuel" }`) as User;
 myUserAccount.name;
 
-// Unknown es una gran herramienta, para entender más sobre ello:
+// Unknown es una gran herramienta, para entenderlo más lee estos:
 // https://mariusschulz.com/blog/the-unknown-type-in-typescript
 // https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-0.html#new-unknown-top-type
 
 // Never
 
-// Debido a que TypeScript soporta el análisis del flujo de código,
-// el lenguaje debe ser capaz de representar cuando el código
-// lógicamente no puede suceder. Por ejemplo, esta función no puede
-// retornar:
+// Dado que TypeScript admite el análisis de flujo de código, el lenguaje
+// necesita poder representar cuando el código lógicamente no puede
+// ocurrir. Por ejemplo, esta función no puede devolver:
 
 const neverReturns = () => {
-  // Arroja en la primera linea
+  // Si lanzas en la primera línea
   throw new Error("Always throws, never returns");
 };
 
-// Si inspecciona el tipo, puedes ver que es () => never
-// el cual significa que esto no puede suceder. Estos todavía
-// pueden ser utilizados como otros valores:
+// Si pasas el mouse sobre el tipo, verás que es un () => never
+// lo cual significa que debería suceder never. Estos todavía se pueden
+// transmitir como otros valores:
 
 const myValue = neverReturns();
 
-// El hecho de que una función retorne `never` puede ser útil
-// cuando se trata de la imprevisibilidad del entorno de ejecución
-// de JavaScript y de los consumidores de APIs que podrían no
-// estar utilizando tipos:
+// Tener una función que regrese never puede ser útil cuando se trata
+// con la imprevisibilidad del entorno de ejecución de JavaScript y
+// los consumidores de la API que pueden no estar usando tipos:
 
 const validateUser = (user: User) => {
   if (user) {
     return user.name !== "NaN";
   }
 
-  // De acuerdo al sistema de tipado, este código nunca puede
-  // ocurrir, el cual encaja con el tipo retornado de neverReturns
+  // Según el sistema de tipos, esta ruta de código nunca puede
+  // suceder, que coincide con el tipo de retorno de neverReturns.
 
   return neverReturns();
 };
 
-// La definición de tipos declara que un usuario tiene que ser
-// suministrado pero existen suficientes mecanismos de escape
-// en JavaScript donde no puedes garantizar eso.
+// Las definiciones de tipo establecen que se debe pasar un usuario
+// pero hay suficientes válvulas de escape en JavaScript por las que
+// no puedes garantizar eso.
 
-// Utilizar una función que retorna `never` permite agregar
-// código adicional en lugares donde no debería ser posible.
-// Esto es muy útil para presentar mejores mensajes de error
-// o para cerrar recursos como archivos o ciclos.
+// Usar una función que regresa never te permite agregar
+// código adicional en lugares que no debería ser posible.
+// Esto es útil para presentar mejores mensajes de error,
+// o cerrar recursos como archivos o bucles.
 
-// Un uso popular para `never` es asegurarse de que una
-// cláusula `switch` sea exhaustiva. Por ejemplo, que todas
-// las rutas han sido cubiertas.
+// Un uso muy popular para never es asegurar que un
+// switch es exhaustivo. Por ejemplo, que todas las rutas estén cubiertas.
 
-// Aquí hay una enumeración y una cláusula `switch` exhaustiva,
-// intenta añadir una nueva opción a la enumeración
-// (¿tal vez Tulip?)
+// Aquí hay una enumeración y un switch exhaustivo, intenta agregar
+// una nueva opción a la enumeración (¿tal vez Tulip?)
 
 enum Flower {
   Rose,
@@ -116,19 +111,18 @@ const flowerLatinName = (flower: Flower) => {
   }
 };
 
-// Recibirás un error de compilación diciendo que tu
-// nuevo tipo de flor no puede convertirse en `never`.
+// Obtendrás un error del compilador que indica que tu nuevo
+// el tipo flower no se puede convertir en never.
 
 // Never en Uniones
 
-// Un tipo `never` es algo que es automáticamente removido
-// de una unión de tipos.
+// Un never es algo que se elimina automáticamente de
+// un tipo unión.
 
 type NeverIsRemoved = string | never | number;
 
-// Si analizas el tipo de NeverIsRemoved, podrás observar que
-// es un string | number. Esto se debe a nunca puede pasar en
-// tiempo de ejecución debido a que no puedes asignar a un tipo
-// `never`.
+// Si observas el tipo de NeverIsRemoved, verás que
+// es una string | number. Esto se debe a que nunca debería
+// suceder en el entorno de ejecución porque no lo puedes asignar.
 
-// Esta característica es bastante utilizada en example:conditional-types
+// Esta característica se usa mucho en example:conditional-types

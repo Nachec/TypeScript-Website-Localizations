@@ -1,9 +1,9 @@
 ---
-display: "Declaration Map"
-oneline: "Crea un mapa de fuente para archivos d.ts"
+display: "Declaración Map"
+oneline: "Cree mapas fuente para archivos d.ts."
 ---
 
-Genera un _source map_ para los archivos `.d.ts` que representa al archivo fuente `.ts`.
-Esto permite a editores de código como VS Code ir al archivo `.ts` original cuando se usan características como _Ir a definición_.
+Genera un mapa fuente para los archivos `.d.ts` que se asignan al archivo fuente `.ts` original.
+Esto permitirá que los editores como *VS Code* vayan al archivo `.ts` original cuando usen funciones como *Ir a la definición*.
 
-Se recomienda fuertemente que consideres habilitar esta característica si estás usando referencias de proyectos.
+Deberías considerar seriamente activar esto si estás utilizando referencias de proyectos.

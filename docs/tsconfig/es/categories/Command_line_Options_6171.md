@@ -1,3 +1,3 @@
 ---
-display: "Línea de comando"
+display: "Línea de comandos"
 ---

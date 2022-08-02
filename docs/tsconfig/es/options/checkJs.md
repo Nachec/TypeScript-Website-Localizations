@@ -1,19 +1,19 @@
 ---
-display: "Check JS"
-oneline: "Permite el reporte de errores en archivos con extensión de JavaScript"
+display: "Comprobación JS"
+oneline: "Habilita el informe de errores en la comprobación de tipo de archivos JavaScript."
 ---
 
-Trabaja en conjunto con `allowJs`. Cuando `checkJs` está habilitado entonces los errores son reportados en archivos JavaScript. Esto es el
-equivalente a incluir `// @ts-check` en la parte superior de todos los archivos JavaScript que están incluidos en tu proyecto.
+Funciona en conjunto con [`allowJs`](#allowJs). Cuando `checkJs` está habilitado, los errores se reportan en archivos *JavaScript*. Este es
+el equivalente de incluir `//@ts-check` en la parte superior de todos los archivos *JavaScript* que se incluyen en tu proyecto.
 
-Por ejemplo, lo siguiente es incorrecto de acuerdo a la definición `parseFloat` que viene con TypeScript.
+Por ejemplo, esto es *JavaScript* incorrecto de acuerdo con la definición de tipo `parseFloat` que viene con *TypeScript*:
 
 ```js
-// parseFloat solo toma un string
+// parseFloat solo toma una cadena
 module.exports.pi = parseFloat(3.124);
 ```
 
-Cuando es importado a un modulo TypeScript:
+Cuando se importa a un módulo de *TypeScript*:
 
 ```ts twoslash
 // @allowJs
@@ -25,7 +25,7 @@ import { pi } from "./constants";
 console.log(pi);
 ```
 
-No obtendrás ningún error. Sin embargo, si habilitas `checkJs` entonces obtendrás mensajes de error del archivo JavaScript.
+No obtendrás ningún error. Sin embargo, si activas `checkJs`, obtendrás mensajes de error del archivo *JavaScript*.
 
 ```ts twoslash
 // @errors: 2345

@@ -1,0 +1,3 @@
+---
+display: "Comprobación de tipo"
+---

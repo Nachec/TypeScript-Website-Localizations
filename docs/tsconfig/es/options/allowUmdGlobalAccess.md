@@ -1,8 +1,8 @@
 ---
-display: "Permitir el acceso global a UMD"
-oneline: "Asume todas las importaciones UMD como disponibles globalmente"
+display: "Permitir acceso global a Umd"
+oneline: "Permitir acceder a global a UMD desde módulos."
 ---
 
-Cuando está activo, `allowUmdGlobalAccess` le permite acceder a las exportaciones UMD como si fueran globales dentro de los archivos del módulo. Un módulo es un archivo que tiene importaciones y/o exportaciones. Sin esta opción, el usar una exportación proveniente de un módulo UMD requerirá una declaración de tipo importación.
+Cuando se establece en `true`, `allowUmdGlobalAccess` te permite acceder a las exportaciones *UMD* como globales desde los archivos del módulo interno. Un archivo de módulo es un archivo que tiene importaciones y/o exportaciones. Sin esta bandera, el uso de una exportación desde un módulo *UMD* requiere una declaración de importación.
 
-Un ejemplo de caso de uso de esta opción sería un proyecto web donde se sabe que la biblioteca particular (como jQuery o Lodash) siempre estará disponible en tiempo de ejecución, pero no puedes acceder a esta con una importación.
+Un caso de uso de ejemplo para esta marca sería un proyecto web en el que sabes que la biblioteca en particular (como *jQuery* o *Lodash*) siempre estará disponible en el entorno de ejecución, pero no puedes acceder a ella con una importación.

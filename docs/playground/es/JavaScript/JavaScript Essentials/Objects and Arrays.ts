@@ -1,18 +1,18 @@
-//// {  "title": "Objetos y arreglos",  "order": 1,  "compiler": {    "strict": false  }}
+//// { "order": 1, "compiler": { "strict": false } }
 
-// Los objetos de JavaScript son colecciones de valores
-// asociados a un nombre (o clave).
+// Los objetos de JavaScript son colecciones de valores envueltos
+// con claves nombradas.
 
 const userAccount = {
   name: "Kieron",
   id: 0,
 };
 
-// Puedes combinarlos para crear modelos de datos más
-// grandes y complejos.
+// Los puedes combinar para hacerlos más grandes y complejos.
+// data-models.
 
 const pie = {
-  type: "Apple",
+  type: "Manzana",
 };
 
 const purchaseOrder = {
@@ -20,93 +20,90 @@ const purchaseOrder = {
   item: pie,
 };
 
-// Si utilizas tu mouse para pasarle por encima a estas
-// palabras (prueba con purchaseOrder arriba) puedes ver
-// como TypeScript está interprentando tu JavaScript como
-// tipos etiquetados.
+// Si usas el mouse para desplazarte sobre algunas de estas palabras
+// (pruebe el purchaseOrder de arriba) puedes ver cómo TypeScript
+// interpreta tu JavaScript en tipos etiquetados.
 
-// Los valores pueden accederse con un ".", por lo que
-// para obtener un nombre de usuario de una orden de compra:
+// Se puede acceder a los valores a través del ".", Por lo que para obtener un
+// username para una orden de compra:
 console.log(purchaseOrder.item.type);
 
-// Si pasas tu mouse por encima de cada parte del código entre
-// los ()s, puedes ver que TypeScript ofrece más información
-// sobre cada parte. Intenta reescribir esto debajo:
+// Si pasas el mouse sobre cada parte del código
+// entre los ()s, puedes ver que TypeScript ofrece más
+// información sobre cada parte. Intenta volver a escribir esto a continuación:
 
-// Copia esto en la próxima línea, carácter por carácter:
+// Copia esto en la siguiente línea, carácter a carácter:
 //
 //   purchaseOrder.item.type
 
-// TypeScript proporciona retroalimentación al playground
-// sobre qué objetos de JavaScript están disponibles en este
-// archivo y permite evitar errores tipográficos y ver
-// información adicional sin tener que buscarla en otro sitio.
+// TypeScript proporciona comentarios al playground
+// sobre qué objetos JavaScript están disponibles en este
+// archivo y te permite evitar errores tipográficos y ver más
+// información sin tener que buscarla en otro lugar.
 
-// TypeScript también ofrece estas mismas funcionalidades para
-// los arreglos. Aquí hay una arreglo con solo nuestra orden
-// de compra de arriba en él.
+// TypeScript también ofrece estas mismas características a los arreglos.
+// Aquí hay un arreglo con solo nuestra orden de compra de arriba.
 
 const allOrders = [purchaseOrder];
 
-// Si pasas por encima de allOrders, puedes saber que es
-// un arreglo porque la información termina con []. Puedes
-// acceder a la primera orden usando los corchetes con un
-// índice (comenzando en cero).
+// Si pasas el mouse sobre allOrders, puedes decir que es un arreglo
+// porque la información de desplazamiento termina con []. Puedes acceder al
+// primer orden mediante el uso de corchetes con un índice
+// (comenzando desde cero).
 
 const firstOrder = allOrders[0];
 console.log(firstOrder.item.type);
 
-// Una forma alternativa de obtener un objeto es sacando
-// (con pop) los elementos del arreglo. Al hacerlo se
-// elimina el objeto del arreglo y se devuelve el objeto.
-// A esto se le llama mutar el arreglo, porque cambia los
-// datos subyacentes dentro de él.
+// Una forma alternativa de obtener un objeto es abriendo el
+// arreglo para eliminar objetos. Hacer esto elimina el objeto
+// del arreglo y devuelve el objeto. Se llama
+// mutar el arreglo, porque cambia los datos
+// subyacentes dentro de él.
 
 const poppedFirstOrder = allOrders.pop();
 
-// Ahora allOrders está vacío. Mutar los datos puede ser
-// útil para muchas cosas, pero una forma de reducir la
-// complejidad en tus bases de código es evitar la mutación.
-// TypeScript ofrece por otra parte una forma de declarar
-// un arreglo de solo lectura (readonly):
+// Ahora allOrders está vacío. La mutación de datos puede resultar útil para
+// muchas cosas, pero una forma de reducir la complejidad en tu
+// código base es evitar la mutación. TypeScript ofrece una forma
+// para declarar un arreglo de solo lectura en su lugar:
 
 // Crea un tipo basado en la forma de una orden de compra:
 type PurchaseOrder = typeof purchaseOrder;
 
-// Crea un arreglo de solo lectura de órdenes de compra
+// Crea un arreglo de órdenes de compra de solo lectura
 const readonlyOrders: readonly PurchaseOrder[] = [purchaseOrder];
 
-// ¡Sí! Es un poco más de código sin dudas. Hay cuatro
-// nuevas cosas aquí:
+// ¡Sí! Seguro que es un poco más de código. Hay cuatro
+// cosas nuevas aquí:
 //
-//  type PurchaseOrder - Declara un nuevo tipo de TypeScript.
+//  type PurchaseOrder ⏤ Declara un nuevo tipo a TypeScript.
 //
-//  typeof - Usa el sistema de inferencia de tipos para establecer
-//           el tipo con base en la constante que se pasa a continuación.
+//  typeof ⏤ Utiliza el sistema de inferencia de tipos para establecer el tipo
+//           basado en la constante que se pasa en next.
 //
-//  purchaseOrder - Obtiene la variable purchaseOrder y le dice
-//                  a TypeScript que esta es la forma de todos los
-//                  objetos en el arreglo orders.
+//  purchaseOrder ⏤ Obtén la variable purchaseOrder y dile a
+//                  TypeScript que esta es la forma de todos
+//                  objetos en el arreglo de pedidos.
 //
-//  readonly - Este objeto no permite mutación, una vez que
-//             se crea el contenido del arreglo será siempre
-//             el mismo.
+//  readonly ⏤ Este objeto no admite la mutación, una vez
+//             se crea entonces el contenido de el arreglo
+//             siempre será el mismo.
 //
-// Ahora si intentas hacer pop de readonlyOrders, TypeScript
-// levantará un error.
+// Ahora, si intentas salir de readonlyOrders, TypeScript
+// generará un error.
 
 readonlyOrders.pop();
 
 // Puedes usar readonly en todo tipo de lugares, es un
-// poco más de sintaxis extra, pero proporciona mucha
-// seguridad adicional.
+// un poco de sintaxis adicional aquí y allá, pero
+// proporciona mucha seguridad adicional.
 
-// Puedes saber más sobre readonly:
+// Puedes obtener más información sobre readonly:
 //  - https://www.typescriptlang.org/docs/handbook/interfaces.html#readonly-properties
 //  - https://basarat.gitbooks.io/typescript/content/docs/types/readonly.html
 
-// y puedes continuar aprendiendo sobre JavaScript y
-// TypeScript en el ejemplo sobre funciones:
+// Y puedes seguir aprendiendo sobre JavaScript y
+// TypeScript en el ejemplo de funciones:
 // example:functions
 //
 // O si quieres saber más sobre inmutabilidad:

@@ -1,8 +1,8 @@
 ---
-display: "Diagnostics"
-oneline: "Información de rendimiento del compilador después de haber compilado."
+display: "Diagnósticos"
+oneline: "Salida de información de rendimiento del compilador después de la construcción."
 ---
 
-Usado para mostrar la información de diagnóstico para depurar. Este comando es un subconjunto de [`extendedDiagnostics`](#extendedDiagnostics) que son resultados más enfocados al usuario, y más fáciles de interpretar.
+Se utiliza para generar información de diagnóstico para la depuración. Este comando es un subconjunto de [`extendedDiagnostics`](#extendedDiagnostics) que son resultados más orientados al usuario y más fáciles de interpretar.
 
-Si un ingeniero compilador de TypeScript le ha pedido que dé los resultados usando esta bandera en una compilación, en el cual no hay daño alguno al usar [`--extendedDiagnostics`](#extendedDiagnostics) en su lugar.
+Si haz pedido a un ingeniero de compilación de *TypeScript* que proporcione los resultados usando esta marca en una compilación, en la que no hay ningún daño en usar [`extendedDiagnostics`](#extendedDiagnostics) en su lugar.

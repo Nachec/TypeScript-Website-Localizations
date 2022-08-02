@@ -1,0 +1,3 @@
+---
+display: "Soporte de JavaScript"
+---

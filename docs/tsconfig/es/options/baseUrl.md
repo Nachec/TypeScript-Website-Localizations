@@ -1,11 +1,11 @@
 ---
-display: "URL Base"
-oneline: "Configura una URL base para los nombres de los módulos relativos"
+display: "URL base"
+oneline: "Especifica el directorio base para resolver nombres de módulos no relativos."
 ---
 
-Le permite establecer un directorio base para resolver nombres de módulos no absolutos.
+Te permite establecer un directorio base para resolver nombres de módulos no absolutos.
 
-Puede definir una carpeta raíz donde puede hacer la resolución absoluta de los archivos. Por ejemplo:
+Puedes definir un directorio raíz donde puedes hacer una resolución de archivo absoluta. por ejemplo:
 
 ```
 baseUrl
@@ -15,7 +15,7 @@ baseUrl
 └── tsconfig.json
 ```
 
-Con `"baseUrl": "./"` dentro de este proyecto, TypeScript TypeScript buscará los archivos que empiezan en la misma carpeta que el archivo `tsconfig.json`.
+Con `"baseUrl": "./" `dentro de este proyecto, *TypeScript* buscará archivos que comiencen en el mismo directorio que el `tsconfig.json`.
 
 ```ts
 import { helloWorld } from "hello/world";
@@ -23,4 +23,5 @@ import { helloWorld } from "hello/world";
 console.log(helloWorld);
 ```
 
-Si te cansas de que las importaciones siempre se vean como `"../"` o `"./"`. o que necesiten cambiarse al mover los archivos, esta es una gran manera de arreglar eso.
+Si te cansas de que las importaciones siempre parezcan `"../"` o `"./"`, o necesites
+cambiarlas a medida que mueves archivos, esta es una excelente manera de solucionarlo.

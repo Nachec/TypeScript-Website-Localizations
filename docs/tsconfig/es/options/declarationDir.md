@@ -1,18 +1,18 @@
 ---
-display: "Declaration Dir"
-oneline: "Especifica el directorio de salida para archivos de declaración generados."
+display: "Declaración Dir"
+oneline: "Especifica el directorio de salida para los archivos de declaración generados."
 ---
 
-Ofrece una manera de configurar el directorio raíz donde los archivos de declaración son emitidos.
+Ofrece una forma de configurar el directorio raíz donde se emiten los archivos de declaración.
 
 ```
-ejemplo
+example
 ├── index.ts
 ├── package.json
 └── tsconfig.json
 ```
 
-con `tsconfig.json`:
+con este `tsconfig.json`:
 
 ```json tsconfig
 {
@@ -23,10 +23,10 @@ con `tsconfig.json`:
 }
 ```
 
-Colocaría el archivo d.ts para `index.ts` en una carpeta `types`:
+Colocaría los `d.ts` para el `index.ts` en un directorio `types`:
 
 ```
-ejemplo
+example
 ├── index.js
 ├── index.ts
 ├── package.json

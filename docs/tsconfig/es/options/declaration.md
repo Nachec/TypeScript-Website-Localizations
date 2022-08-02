@@ -1,32 +1,32 @@
 ---
 display: "Declaration"
-oneline: "Genera los archivos .d.ts de TypeScript y JavaScript en tu proyecto."
+oneline: "Genera archivos .d.ts a partir de archivos TypeScript y JavaScript en su proyecto."
 ---
 
-Genera los archivos `.d.ts` para cada archivo TypeScript o JavaScript dentro de tu proyecto.
-Estos archivos `.d.ts` son archivos de tipo definición que describen la API externa de tu módulo.
-Con los archivos `.d.ts`, herramientas como TypeScript pueden ofrecer intellisense (auto completado) y un escritura precisa para código no escrito.
+Genera archivos `.d.ts` para cada archivo *TypeScript* o *JavaScript* dentro de tu proyecto.
+Estos archivos `.d.ts` son archivos de definición de tipos que describen la *API* externa de tu módulo.
+Con archivos `.d.ts`, herramientas como *TypeScript* pueden proporcionar tipos *intellisense* y precisos para código sin escribir.
 
-Cuando `declaration` esta establecida como `true`, al ejecutar el compilador con el siguiente código TypeScript:
+Cuando `declaration` se establece en `true`, se ejecuta el compilador con este código *TypeScript*:
 
 ```ts twoslash
-export let holaMundo = "hi";
+export let helloWorld = "hi";
 ```
 
-Generará un archivo `index.js` como el siguiente:
+Generará un archivo `index.js` como este:
 
 ```ts twoslash
 // @showEmit
-export let holaMundo = "hi";
+export let helloWorld = "hi";
 ```
 
-Con su correspondiente `holaMundo.d.ts`:
+Con un `helloWorld.d.ts` correspondiente:
 
 ```ts twoslash
 // @showEmittedFile: index.d.ts
 // @showEmit
 // @declaration
-export let holaMundo = "hi";
+export let helloWorld = "hi";
 ```
 
-Cuando se trabaja con archivos `.d.ts` para archivos JavaScript, querrás usar [`emitDeclarationOnly`](#emitDeclarationOnly) o usar [`outDir`](#outDir) para asegurarte que los archivos JavaScript no son sobre-escritos.
+Cuando trabajes con archivos `.d.ts` para archivos *JavaScript*, puedes usar [`emitDeclarationOnly`](#emitDeclarationOnly) o usar [`outDir`](#outDir) para asegurarte de que los archivos *JavaScript* no se sobrescriban.
