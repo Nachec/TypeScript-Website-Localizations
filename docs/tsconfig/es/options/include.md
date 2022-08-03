@@ -43,7 +43,7 @@ Que incluiría:
 │   ├── update_deps.ts     ⨯
 │   └── utils.ts           ⨯
 ├── src                    ✓
-[parcial]│   ├── client
+│   ├── client             ✓
 │   │    ├── index.ts      ✓
 │   │    └── utils.ts      ✓
 │   ├── server             ✓

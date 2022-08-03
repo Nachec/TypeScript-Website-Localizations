@@ -68,7 +68,7 @@ La función `callBack`, cuando se llama:
   * Se debe pasar un valor del tipo asociado con el nombre `attributeInThePassedObject`; por lo tanto, dado que `firstName` se escribe como `string`, la devolución de llamada para el evento `firstNameChanged` espera que se le pase una `string` en el momento de la llamada. Del mismo modo, los eventos asociados con `age` deben esperar ser llamados con un argumento `number`
   * Debería tener el tipo de retorno `void` (para simplificar la demostración)
 
-La firma de la función ingenua de `on()` podría ser: [parcial]on(eventName: string, callBack: (newValue: any) => void)`. Sin embargo, en la descripción anterior, identificamos restricciones de tipo importantes que nos gustaría documentar en nuestro código. Los tipos de plantilla literal nos permiten traer estas restricciones a nuestro código.
+La firma de la función ingenua de `on()` podría ser: `on(eventName: string, callBack: (newValue: any) => void)`. Sin embargo, en la descripción anterior, identificamos restricciones de tipo importantes que nos gustaría documentar en nuestro código. Los tipos de plantilla literal nos permiten traer estas restricciones a nuestro código.
 
 ```ts twoslash
 // @noErrors
